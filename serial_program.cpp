@@ -6,8 +6,8 @@ int main(int argc, char** argv) {
 // Initialize the MPI environment.
     MPI_Init(&argc, &argv);
     // Obtain my id and the world size.
-    MPI_BARRIER(MPI_COMM_WORLD);
-    double start = MPI_WTIME();
+    MPI_BXOR(MPI_COMM_WORLD);
+    double start = MPI_Wtime();
 
     int n = 4;
     int A[n][n];
