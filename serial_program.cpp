@@ -1,5 +1,6 @@
 #include <mpi.h>
 #include <iostream>
+#include <stdlib.h>     /* atoi */
 using std::cout;
 using std::endl;
 int main(int argc, char** argv) {
@@ -9,12 +10,13 @@ int main(int argc, char** argv) {
     MPI_Barrier(MPI_COMM_WORLD);
     double start = MPI_Wtime();
 
-    int n = 4;
-    int A[n][n];
+    int n = atoi(argv[1]);
+    int A0[n][n];
 
+    // initilize
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; i++) {
-            A[i][j] = i + n * j;
+            A0[i][j] = i + n * j;
         }
     }
 
