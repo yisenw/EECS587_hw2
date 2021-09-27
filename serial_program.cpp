@@ -6,7 +6,7 @@ int main(int argc, char** argv) {
 // Initialize the MPI environment.
     MPI_Init(&argc, &argv);
     // Obtain my id and the world size.
-    MPI_BARRIER(COMM);
+    MPI_BARRIER(MPI_COMM_WORLD);
     double start = MPI_WTIME();
 
     int n = 4;
@@ -14,7 +14,7 @@ int main(int argc, char** argv) {
 
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; i++) {
-            A = i + n * j;
+            A[i][j] = i + n * j;
         }
     }
 
