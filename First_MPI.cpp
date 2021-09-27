@@ -10,7 +10,7 @@ int main(int argc, char** argv) {
     int ID;
     MPI_Comm_size(MPI_COMM_WORLD, &P);
     MPI_Comm_rank(MPI_COMM_WORLD, &ID);
-    cout << "Message from process " « ID « " of " « P << endl;
+    cout << "Message from process " << ID << " of " << P << endl;
     // Finalize MPI.
     MPI_Finalize();
     return 0;
