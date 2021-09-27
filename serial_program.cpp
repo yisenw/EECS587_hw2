@@ -18,7 +18,7 @@ int main(int argc, char** argv) {
         }
     }
 
-    double final = MPI_WTIME();
+    double final = MPI_Wtime();
     cout << "Wall time:  " << final - start << endl;
 
     // Finalize MPI.
