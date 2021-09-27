@@ -14,4 +14,5 @@
 # (">" redirects the print output of your pfogram,
 # in this case to "output.txt")
 
-mpirun -np 4 --bind-to core:overload-allowed ./s
+mpic++ First_MPI.cpp -o s.out
+mpirun -np 9 --oversubscribe s.out
