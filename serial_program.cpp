@@ -22,7 +22,7 @@ void run_serial(int n, int (*f)(int, int, int, int)) {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
             if (i == 0 || j == 0 || i == n-1 || j == n-1) A[i][j] = A0[i][j];
-            else A[i][j] = f(A[i][j], A[i + 1][j], A[i][j + 1], A[i + 1][j + 1]);
+            else A[i][j] = f(A0[i][j], A0[i + 1][j], A0[i][j + 1], A0[i + 1][j + 1]);
         }
     }
     for (int i = 0; i < n; i++) {
