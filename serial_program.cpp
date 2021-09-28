@@ -34,8 +34,8 @@ void run_serial(int n, int (*f)(int, int, int, int)) {
             else A[i][j] = f(A[i][j], A[i + 1][j], A[i][j + 1], A[i + 1][j + 1]);
         }
     }
-    print(A0);
-    print(A);
+    print(&A0);
+    print(&A);
 
 }
 
