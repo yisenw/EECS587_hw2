@@ -15,6 +15,7 @@ void run_serial(int n, int (*f)(int, int, int, int)) {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
             A0[i][j] = i + n * j;
+            cout << A0[i][j] << endl;
         }
     }
 
