@@ -8,7 +8,7 @@ int func(int a, int b, int c, int d) {
     return a - b - c - d;
 }
 
-void print(int* A, int n) {
+void print(int** A, int n) {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; i++) {
             cout << A[i][j] << " ";
