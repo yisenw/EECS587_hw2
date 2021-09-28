@@ -20,24 +20,24 @@ void run_serial(int n, int (*f)(int, int, int, int)) {
     }
 
     int A[n][n];
-    // for (int i = 0; i < n; i++) {
-    //     for (int j = 0; j < n; j++) {
-    //         if (i == 0 || j == 0 || i == n-1 || j == n-1) A[i][j] = A0[i][j];
-    //         else A[i][j] = f(A0[i][j], A0[i + 1][j], A0[i][j + 1], A0[i + 1][j + 1]);
-    //     }
-    // }
     for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (i == 0 || j == 0 || i == n-1 || j == n-1) A[i][j] = A0[i][j];
+            else A[i][j] = f(A0[i][j], A0[i + 1][j], A0[i][j + 1], A0[i + 1][j + 1]);
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
             cout << A0[i][j] << " ";
         }
         cout << "\n";
     }
-    // for (int i = 0; i < n; i++) {
-    //     for (int j = 0; j < n; i++) {
-    //         cout << A[i][j] << " ";
-    //     }
-    //     cout << "\n";
-    // }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; i++) {
+            cout << A[i][j] << " ";
+        }
+        cout << "\n";
+    }
 
 }
 
