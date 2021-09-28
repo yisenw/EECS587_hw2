@@ -8,15 +8,6 @@ int func(int a, int b, int c, int d) {
     return a - b - c - d;
 }
 
-void print(int** A, int n) {
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; i++) {
-            cout << A[i][j] << " ";
-        }
-        cout << "\n";
-    }
-}
-
 void run_serial(int n, int (*f)(int, int, int, int)) {
     int A0[n][n];
     cout << "n is: " << n << endl;
@@ -34,8 +25,18 @@ void run_serial(int n, int (*f)(int, int, int, int)) {
             else A[i][j] = f(A[i][j], A[i + 1][j], A[i][j + 1], A[i + 1][j + 1]);
         }
     }
-    print(&A0);
-    print(&A);
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; i++) {
+            cout << A0[i][j] << " ";
+        }
+        cout << "\n";
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; i++) {
+            cout << A[i][j] << " ";
+        }
+        cout << "\n";
+    }
 
 }
 
