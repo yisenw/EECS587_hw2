@@ -26,12 +26,14 @@ void run_serial(int n, int (*f)(int, int, int, int)) {
             else A[i][j] = f(A0[i][j], A0[i + 1][j], A0[i][j + 1], A0[i + 1][j + 1]);
         }
     }
+    cout << "A0:\n";
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
             cout << A0[i][j] << " ";
         }
         cout << "\n";
     }
+    cout << "\nA:\n";
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
             cout << A[i][j] << " ";
