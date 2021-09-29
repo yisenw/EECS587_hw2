@@ -42,7 +42,7 @@ void run_serial(vector<vector<double>>& A0, double n, double (*f)(double, double
 }
 
 
-double main(int argc, char** argv) {
+int main(int argc, char** argv) {
 // Initialize the MPI environment.
     MPI_Init(&argc, &argv);
     int n = atoi(argv[1]);
