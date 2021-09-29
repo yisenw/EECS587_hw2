@@ -54,7 +54,7 @@ int main(int argc, char** argv) {
     cout << "A0:\n";
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) cout << A0[i][j] << " ";
-        cout << "\n";
+        cout << "\n\n";
     }
 
     MPI_Barrier(MPI_COMM_WORLD);
