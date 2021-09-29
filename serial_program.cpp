@@ -8,7 +8,7 @@ using namespace std;
 int IT_NUM = 10;
 
 int func(int a, int b, int c, int d) {
-    return (a + b - c - d);
+    return (a + b + c + d) % 100;
 }
 
 void run_serial(vector<vector<int>>& A0, int n, int (*f)(int, int, int, int), int if_print) {
