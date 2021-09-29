@@ -5,12 +5,13 @@
 using namespace std;
 // using std::endl;
 
+int IT_NUM = 10;
+
 int func(int a, int b, int c, int d) {
     return a - b - c - d;
 }
 
 void run_serial(vector<vector<int>> A0, int n, int (*f)(int, int, int, int)) {
-    int A0[n][n];
     cout << "n is: " << n << endl;
 
     double start = MPI_Wtime();
@@ -21,6 +22,9 @@ void run_serial(vector<vector<int>> A0, int n, int (*f)(int, int, int, int)) {
             else A[i][j] = f(A0[i][j], A0[i + 1][j], A0[i][j + 1], A0[i + 1][j + 1]);
         }
     }
+
+    double final = MPI_Wtime();
+    cout << "Wall time:  " << final - start << endl;
 
     // print
     cout << "A0:\n";
@@ -38,8 +42,7 @@ void run_serial(vector<vector<int>> A0, int n, int (*f)(int, int, int, int)) {
         cout << "\n";
     }
 
-    double final = MPI_Wtime();
-    cout << "Wall time:  " << final - start << endl;
+    
 
 }
 
