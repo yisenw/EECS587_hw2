@@ -26,9 +26,9 @@ void run_parallel(int n, int (*f)(int, int, int, int), int if_print, int P, int 
     if (if_print) {
         cout << "sub_n = " << sub_n << "\n";
         cout << "Contents:" <<  "\n";
-        for (int i = sub_n * row; i < min(sub_n * (row + 1), n); i++) {
-            for (int j = sub_n * col; j < min(sub_n * (col + 1), n); j++) {
-                A0[i - sub_n * row][j - sub_n * col] = i + j * n;
+        for (int i = 0; i < num_row; i++) {
+            for (int j = 0; j < num_col; j++) {
+                A0[i][j] = (num_row + i) + (num_col + j) * n;
                 cout << A0[i][j] << " ";
             }
             cout << "\n";
