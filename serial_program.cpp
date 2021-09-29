@@ -33,8 +33,10 @@ void run_serial(const vector<vector<int>>& A0, int n, int (*f)(int, int, int, in
             for (int j = 0; j < n; j++) cout << A[i][j] << " ";
             cout << "\n";
         }
+        A0 = A;
+        
     }
-    
+
     double final = MPI_Wtime();
     cout << "Wall time:  " << final - start << endl;
 }
