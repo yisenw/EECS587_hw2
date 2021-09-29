@@ -13,15 +13,20 @@ int func(int a, int b, int c, int d) {
 }
 
 void run_parallel(vector<vector<int>>& A0, int n, int (*f)(int, int, int, int), int if_print, int P, int ID) {
-    cout << "Start process " << ID << " of " << P <<  "\n";
     int sub_n = ceil(n / sqrt(P));
-    cout << "sub_n = " << sub_n << "\n";
-    cout << "Contents:" <<  "\n";
-    for (int i = sub_n * ID; i < min(sub_n * (ID + 1), n); i++) {
-        for (int j = sub_n * ID; j < min(sub_n * (ID + 1), n); j++) cout << A0[i][j] << " ";
+    cout << "Start process " << ID << " of " << P <<  ", sub_n is " << sub_n << ", start = " 
+        << ID * sub_n << ", end = " << min(n, ID * sub_n) << endl;
+    
+
+    if (if_print) {
+        cout << "sub_n = " << sub_n << "\n";
+        cout << "Contents:" <<  "\n";
+        for (int i = sub_n * ID; i < min(sub_n * (ID + 1), n); i++) {
+            for (int j = sub_n * ID; j < min(sub_n * (ID + 1), n); j++) cout << A0[i][j] << " ";
+            cout << "\n";
+        }
         cout << "\n";
     }
-    cout << "\n";
 }
 
 
