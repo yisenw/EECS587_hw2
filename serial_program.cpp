@@ -5,17 +5,17 @@
 using namespace std;
 // using std::endl;
 
-int IT_NUM = 10;
+double IT_NUM = 10;
 
-int func(int a, int b, int c, int d) {
-    return (a + b + c) / d;
+double func(double a, double b, double c, double d) {
+    return a / (a + b + c + d);
 }
 
-void run_serial(vector<vector<int>>& A0, int n, int (*f)(int, int, int, int)) {
+void run_serial(vector<vector<double>>& A0, double n, double (*f)(double, double, double, double)) {
     cout << "n is: " << n << endl;
 
     double start = MPI_Wtime();
-    vector<vector<int>> A(n, vector<int> (n, 0));
+    vector<vector<double>> A(n, vector<double> (n, 0));
 
     for (int it = 0; it < IT_NUM; it++) {
         for (int i = 0; i < n; i++) {
@@ -42,13 +42,13 @@ void run_serial(vector<vector<int>>& A0, int n, int (*f)(int, int, int, int)) {
 }
 
 
-int main(int argc, char** argv) {
+double main(int argc, char** argv) {
 // Initialize the MPI environment.
     MPI_Init(&argc, &argv);
     int n = atoi(argv[1]);
 
     // initilize
-    vector<vector<int>> A0(n, vector<int> (n, 0));
+    vector<vector<double>> A0(n, vector<double> (n, 0));
     for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) A0[i][j] = i + j * n;
     // print
     cout << "A0:\n";
