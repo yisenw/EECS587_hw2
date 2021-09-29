@@ -2,8 +2,8 @@
 #include <iostream>
 #include <vector>
 #include <stdlib.h>     /* atoi */
-using std::cout;
-using std::endl;
+using namespace std;
+// using std::endl;
 
 int func(int a, int b, int c, int d) {
     return a - b - c - d;
