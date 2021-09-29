@@ -4,7 +4,7 @@
 #include <cmath>
 #include <stdlib.h>     /* atoi */
 using namespace std;
-// using std::endl;
+// using std:: "\n";
 
 int IT_NUM = 10;
 
@@ -13,10 +13,10 @@ int func(int a, int b, int c, int d) {
 }
 
 void run_parallel(vector<vector<int>>& A0, int n, int (*f)(int, int, int, int), int if_print, int P, int ID) {
-    cout << "Start process " << ID << " of " << P << endl;
+    cout << "Start process " << ID << " of " << P <<  "\n";
     int sub_n = ceil(n / sqrt(P));
-    cout << "sub_n = " << sub_n << endl;
-    cout << "Contents:" << endl;
+    cout << "sub_n = " << sub_n << "\n";
+    cout << "Contents:" <<  "\n";
     for (int i = sub_n * ID; i < min(sub_n * (ID + 1), n); i++) {
         for (int j = sub_n * ID; j < min(sub_n * (ID + 1), n); j++) cout << A0[i][j] << " ";
         cout << "\n";
@@ -39,10 +39,10 @@ int main(int argc, char** argv) {
     MPI_Comm_size(MPI_COMM_WORLD, &P);
     MPI_Comm_rank(MPI_COMM_WORLD, &ID);
     if (ID == 0) {
-        cout << "Root processor " << ID << " is initializing." << endl;
+        cout << "Root processor " << ID << " is initializing." <<  "\n";
         for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) A0[i][j] = i + j * n;
         if (if_print) {
-            cout << "n is: " << n << endl;
+            cout << "n is: " << n <<  "\n";
             cout << "A0:\n";
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) cout << A0[i][j] << " ";
