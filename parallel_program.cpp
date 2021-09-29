@@ -21,8 +21,8 @@ void run_parallel(int n, int (*f)(int, int, int, int), int if_print, int P, int 
         << sub_n * col << ", j_end = " <<min(sub_n * (col + 1), n) << endl;
     int num_row = min(sub_n * (row + 1), n) - sub_n * row;
     int num_col = min(sub_n * (row + 1), n) - sub_n * col;
-    vector<vector<int>> A0(num_row, num_col);
-    
+    vector<vector<int>> A0(num_row, vector<int> (num_col, 0));
+
     if (if_print) {
         cout << "sub_n = " << sub_n << "\n";
         cout << "Contents:" <<  "\n";
