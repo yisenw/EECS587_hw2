@@ -14,8 +14,6 @@ int func(int a, int b, int c, int d) {
 void run_serial(const vector<vector<int>>& A0, int n, int (*f)(int, int, int, int)) {
     cout << "n is: " << n << endl;
 
-    for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) A0[i][j] = i + j * n;
-
     double start = MPI_Wtime();
     vector<vector<int>> A;
     for (int i = 0; i < n; i++) {
@@ -52,6 +50,7 @@ int main(int argc, char** argv) {
 
     // initilize
     vector<vector<int>> A0(n, vector<int> (n, 0));
+    for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) A0[i][j] = i + j * n;
 
     MPI_Barrier(MPI_COMM_WORLD);
     run_serial(A0, n, &func);
