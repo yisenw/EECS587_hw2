@@ -28,7 +28,7 @@ void run_parallel(int n, int (*f)(int, int, int, int), int if_print, int P, int 
         cout << "Contents:" <<  "\n";
         for (int i = sub_n * row; i < min(sub_n * (row + 1), n); i++) {
             for (int j = sub_n * col; j < min(sub_n * (col + 1), n); j++) {
-                A0[i][j] = n + j * n;
+                A0[i][j] = i + j * n;
                 cout << A0[i][j] << " ";
             }
             cout << "\n";
