@@ -11,7 +11,7 @@ int func(int a, int b, int c, int d) {
     return a - b - c - d;
 }
 
-void run_serial(const vector<vector<int>>& A0, int n, int (*f)(int, int, int, int)) {
+void run_serial(vector<vector<int>>& A0, int n, int (*f)(int, int, int, int)) {
     cout << "n is: " << n << endl;
 
     double start = MPI_Wtime();
@@ -34,7 +34,7 @@ void run_serial(const vector<vector<int>>& A0, int n, int (*f)(int, int, int, in
             cout << "\n";
         }
         A0 = A;
-        
+
     }
 
     double final = MPI_Wtime();
