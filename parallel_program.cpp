@@ -31,7 +31,7 @@ void run_parallel(int n, int (*f)(int, int, int, int), int if_print, int P, int 
                 A0[i][j] = (row*sub_n + i) + (col*sub_n + j) * n;
                 cout << A0[i][j] << " ";
             }
-            cout << "\n";
+            // cout << "\n";
         }
         cout << "\n";
     }
