@@ -1,6 +1,7 @@
 #include <mpi.h>
 #include <iostream>
 #include <vector>
+#include <cmath>
 #include <stdlib.h>     /* atoi */
 using namespace std;
 // using std::endl;
@@ -12,7 +13,15 @@ int func(int a, int b, int c, int d) {
 }
 
 void run_parallel(vector<vector<int>>& A0, int n, int (*f)(int, int, int, int), int if_print, int P, int ID) {
-    cout << "P message from process " << ID << " of " << P << endl;
+    cout << "Start process " << ID << " of " << P << endl;
+    int sub_n = ceiling(n / sqrt(P));
+    cout << "sub_n = " << sub_n << endl;
+    cout << "Contents:" << endl;
+    for (int i = sub_n * ID; i < min(sub_n * (ID + 1), n); i++) {
+        for (int j = sub_n * ID; j < min(sub_n * (ID + 1), n); j++) cout << A[i][j] << " ";
+        cout << "\n";
+    }
+    cout << "\n";
 }
 
 

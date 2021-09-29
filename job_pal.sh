@@ -15,4 +15,4 @@
 # in this case to "output.txt")
 
 mpic++ parallel_program.cpp -o pal.out
-mpirun -np 8 --oversubscribe pal.out 4 1
+mpirun -np 4 --oversubscribe pal.out 8 1
