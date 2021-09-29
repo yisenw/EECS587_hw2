@@ -18,7 +18,7 @@ void run_parallel(vector<vector<int>>& A0, int n, int (*f)(int, int, int, int), 
     cout << "sub_n = " << sub_n << endl;
     cout << "Contents:" << endl;
     for (int i = sub_n * ID; i < min(sub_n * (ID + 1), n); i++) {
-        for (int j = sub_n * ID; j < min(sub_n * (ID + 1), n); j++) cout << A[i][j] << " ";
+        for (int j = sub_n * ID; j < min(sub_n * (ID + 1), n); j++) cout << A0[i][j] << " ";
         cout << "\n";
     }
     cout << "\n";
