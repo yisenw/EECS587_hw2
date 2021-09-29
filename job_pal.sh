@@ -14,5 +14,5 @@
 # (">" redirects the print output of your pfogram,
 # in this case to "output.txt")
 
-mpic++ serial_program.cpp -o pal.out
+mpic++ parallel_program.cpp -o pal.out
 mpirun -np 1 --oversubscribe pal.out 4 1
