@@ -12,20 +12,25 @@ int func(int a, int b, int c, int d) {
     return (a + b + c + d) % 100;
 }
 
-void run_parallel(vector<vector<int>>& A0, int n, int (*f)(int, int, int, int), int if_print, int P, int ID) {
+void run_parallel(int n, int (*f)(int, int, int, int), int if_print, int P, int ID) {
     int sub_n = ceil(n / sqrt(P));
     int row = floor(ID / sqrt(P));
     int col = ID - row * sqrt(P);
     cout << "Start process " << ID << " of " << P <<  ", sub_n is " << sub_n << ", i_start = " 
         << sub_n * row << ", i_end = " <<min(sub_n * (row + 1), n) << ", j_start = " 
         << sub_n * col << ", j_end = " <<min(sub_n * (col + 1), n) << endl;
+    int num_row = min(sub_n * (row + 1), n) - sub_n * row;
+    int num_col = min(sub_n * (row + 1), n) - sub_n * col;
+    vector<vector<int>> A0(num_row, num_col);
     
-
     if (if_print) {
         cout << "sub_n = " << sub_n << "\n";
         cout << "Contents:" <<  "\n";
         for (int i = sub_n * row; i < min(sub_n * (row + 1), n); i++) {
-            for (int j = sub_n * col; j < min(sub_n * (col + 1), n); j++) cout << A0[i][j] << " ";
+            for (int j = sub_n * col; j < min(sub_n * (col + 1), n); j++) {
+                A0[i][j] = n + j * n;
+                cout << A0[i][j] << " ";
+            }
             cout << "\n";
         }
         cout << "\n";
@@ -64,7 +69,7 @@ int main(int argc, char** argv) {
     
 
     MPI_Barrier(MPI_COMM_WORLD);
-    run_parallel(A0, n, &func, if_print, P, ID);
+    run_parallel(n, &func, if_print, P, ID);
 
     // Finalize MPI.
     MPI_Finalize();
