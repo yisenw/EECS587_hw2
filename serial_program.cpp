@@ -5,17 +5,17 @@
 using namespace std;
 // using std::endl;
 
-double IT_NUM = 10;
+int IT_NUM = 10;
 
-double func(double a, double b, double c, double d) {
+int func(int a, int b, int c, int d) {
     return (a + b - c - d);
 }
 
-void run_serial(vector<vector<double>>& A0, double n, double (*f)(double, double, double, double)) {
+void run_serial(vector<vector<int>>& A0, int n, int (*f)(int, int, int, int)) {
     cout << "n is: " << n << endl;
 
     double start = MPI_Wtime();
-    vector<vector<double>> A(n, vector<double> (n, 0));
+    vector<vector<int>> A(n, vector<int> (n, 0));
 
     for (int it = 0; it < IT_NUM; it++) {
         for (int i = 0; i < n; i++) {
@@ -48,7 +48,7 @@ int main(int argc, char** argv) {
     int n = atoi(argv[1]);
 
     // initilize
-    vector<vector<double>> A0(n, vector<double> (n, 0));
+    vector<vector<int>> A0(n, vector<int> (n, 0));
     for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) A0[i][j] = i + j * n;
     // print
     cout << "A0:\n";
