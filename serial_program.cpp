@@ -8,7 +8,7 @@ using namespace std;
 int IT_NUM = 10;
 
 int func(int a, int b, int c, int d) {
-    return a - b - c - d;
+    return (a + b + c) / d;
 }
 
 void run_serial(vector<vector<int>>& A0, int n, int (*f)(int, int, int, int)) {
@@ -54,8 +54,9 @@ int main(int argc, char** argv) {
     cout << "A0:\n";
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) cout << A0[i][j] << " ";
-        cout << "\n\n";
+        cout << "\n";
     }
+    cout << "\n";
 
     MPI_Barrier(MPI_COMM_WORLD);
     run_serial(A0, n, &func);
