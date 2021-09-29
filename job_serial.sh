@@ -15,4 +15,4 @@
 # in this case to "output.txt")
 
 mpic++ serial_program.cpp -o serial.out
-mpirun -np 1 --oversubscribe serial.out 3
+mpirun -np 1 --oversubscribe serial.out 4
