@@ -54,7 +54,7 @@ int main(int argc, char** argv) {
     for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) A0[i][j] = i + j * n;
     // print
 
-    int if_print = atoi(argv[2])
+    int if_print = atoi(argv[2]);
     if (if_print) {
         cout << "A0:\n";
         for (int i = 0; i < n; i++) {
