@@ -5,7 +5,7 @@
 using namespace std;
 // using std::endl;
 
-int IT_NUM = 3;
+int IT_NUM = 10;
 
 int func(int a, int b, int c, int d) {
     return a - b - c - d;
