@@ -8,7 +8,7 @@ using namespace std;
 double IT_NUM = 10;
 
 double func(double a, double b, double c, double d) {
-    return a / (a + b + c + d);
+    return (a + b - c - d);
 }
 
 void run_serial(vector<vector<double>>& A0, double n, double (*f)(double, double, double, double)) {
