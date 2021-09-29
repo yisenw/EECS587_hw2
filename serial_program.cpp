@@ -25,8 +25,7 @@ void run_serial(const vector<vector<int>>& A0, int n, int (*f)(int, int, int, in
             }
         }
 
-        double final = MPI_Wtime();
-        cout << "Wall time:  " << final - start << endl;
+        
 
         // print
         cout << "\nA for it = " << it << endl;
@@ -35,7 +34,9 @@ void run_serial(const vector<vector<int>>& A0, int n, int (*f)(int, int, int, in
             cout << "\n";
         }
     }
-
+    
+    double final = MPI_Wtime();
+    cout << "Wall time:  " << final - start << endl;
 }
 
 
