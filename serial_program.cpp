@@ -1,5 +1,6 @@
 #include <mpi.h>
 #include <iostream>
+#include <vector>
 #include <stdlib.h>     /* atoi */
 using std::cout;
 using std::endl;
@@ -8,17 +9,11 @@ int func(int a, int b, int c, int d) {
     return a - b - c - d;
 }
 
-void run_serial(int n, int (*f)(int, int, int, int)) {
+void run_serial(vector<vector<int>> A0, int n, int (*f)(int, int, int, int)) {
     int A0[n][n];
     cout << "n is: " << n << endl;
-    // initilize
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            A0[i][j] = i + n * j;
-            // cout << A0[i][j] << endl;
-        }
-    }
 
+    double start = MPI_Wtime();
     int A[n][n];
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
@@ -26,6 +21,8 @@ void run_serial(int n, int (*f)(int, int, int, int)) {
             else A[i][j] = f(A0[i][j], A0[i + 1][j], A0[i][j + 1], A0[i + 1][j + 1]);
         }
     }
+
+    // print
     cout << "A0:\n";
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
@@ -41,20 +38,23 @@ void run_serial(int n, int (*f)(int, int, int, int)) {
         cout << "\n";
     }
 
+    double final = MPI_Wtime();
+    cout << "Wall time:  " << final - start << endl;
+
 }
 
 
 int main(int argc, char** argv) {
 // Initialize the MPI environment.
     MPI_Init(&argc, &argv);
-    // Obtain my id and the world size.
-    MPI_Barrier(MPI_COMM_WORLD);
-    double start = MPI_Wtime();
     int n = atoi(argv[1]);
-    run_serial(n, &func);
 
-    double final = MPI_Wtime();
-    cout << "Wall time:  " << final - start << endl;
+    // initilize
+    vector<vector<int>> A0(n, vector<int> (n, 0));
+
+    MPI_Barrier(MPI_COMM_WORLD);
+    run_serial(A0, n, &func);
+
     // Finalize MPI.
     MPI_Finalize();
     return 0;
