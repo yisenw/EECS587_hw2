@@ -15,7 +15,7 @@ int func(int a, int b, int c, int d) {
 void run_parallel(vector<vector<int>>& A0, int n, int (*f)(int, int, int, int), int if_print, int P, int ID) {
     int sub_n = ceil(n / sqrt(P));
     cout << "Start process " << ID << " of " << P <<  ", sub_n is " << sub_n << ", start = " 
-        << ID * sub_n << ", end = " << min(n, ID * sub_n) << endl;
+        << ID * sub_n << ", end = " << min(sub_n * (ID + 1), n) << endl;
     
 
     if (if_print) {
