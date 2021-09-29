@@ -11,8 +11,10 @@ int func(int a, int b, int c, int d) {
     return a - b - c - d;
 }
 
-void run_serial(vector<vector<int>> A0, int n, int (*f)(int, int, int, int)) {
+void run_serial(const vector<vector<int>>& A0, int n, int (*f)(int, int, int, int)) {
     cout << "n is: " << n << endl;
+
+    for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) A0[i][j] = i + j * n;
 
     double start = MPI_Wtime();
     vector<vector<int>> A;
@@ -29,16 +31,12 @@ void run_serial(vector<vector<int>> A0, int n, int (*f)(int, int, int, int)) {
     // print
     cout << "A0:\n";
     for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            cout << A0[i][j] << " ";
-        }
+        for (int j = 0; j < n; j++) cout << A0[i][j] << " ";
         cout << "\n";
     }
     cout << "\nA:\n";
     for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            cout << A[i][j] << " ";
-        }
+        for (int j = 0; j < n; j++) cout << A[i][j] << " ";
         cout << "\n";
     }
 
