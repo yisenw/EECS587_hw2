@@ -11,7 +11,7 @@ int func(int a, int b, int c, int d) {
     return (a + b - c - d);
 }
 
-void run_serial(vector<vector<int>>& A0, int n, int (*f)(int, int, int, int)) {
+void run_serial(vector<vector<int>>& A0, int n, int (*f)(int, int, int, int), int if_print) {
     cout << "n is: " << n << endl;
 
     double start = MPI_Wtime();
@@ -26,14 +26,16 @@ void run_serial(vector<vector<int>>& A0, int n, int (*f)(int, int, int, int)) {
         }
 
         
-
-        // print
-        cout << "\nA for it = " << it << endl;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) cout << A[i][j] << " ";
-            cout << "\n";
+        if (if_print) {
+            // print
+            cout << "\nA for it = " << it << endl;
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) cout << A[i][j] << " ";
+                cout << "\n";
+            }
+            A0 = A;
         }
-        A0 = A;
+        
 
     }
 
@@ -51,15 +53,20 @@ int main(int argc, char** argv) {
     vector<vector<int>> A0(n, vector<int> (n, 0));
     for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) A0[i][j] = i + j * n;
     // print
-    cout << "A0:\n";
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) cout << A0[i][j] << " ";
+
+    int if_print = atoi(argv[2])
+    if (if_print) {
+        cout << "A0:\n";
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) cout << A0[i][j] << " ";
+            cout << "\n";
+        }
         cout << "\n";
     }
-    cout << "\n";
+    
 
     MPI_Barrier(MPI_COMM_WORLD);
-    run_serial(A0, n, &func);
+    run_serial(A0, n, &func, if_print);
 
     // Finalize MPI.
     MPI_Finalize();
