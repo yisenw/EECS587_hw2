@@ -51,7 +51,7 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
     // start sending 
     // right send to left; lower send to upper; lower right send to upper left.
     int n_of_P = sqrt(P);
-    if (row != 0) { // right send to left
+    if (col != 0) { // right send to left
         vector<long long> msg;
         get_first_col(msg, A0);
         if (if_print) {
@@ -61,7 +61,7 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
         }
         MPI_Send(&msg, n_of_P, MPI_LONG_LONG, ID - 1, 0, MPI_COMM_WORLD);
     }
-    if (col != 0) { // lower send to upper
+    if (row != 0) { // lower send to upper
         vector<long long> msg = A0[0];
         if (if_print) {
             cout << "Sending msg from lower " << ID << " of " << P << " to " << ID - n_of_P << ": ";
