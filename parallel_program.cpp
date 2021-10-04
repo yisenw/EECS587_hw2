@@ -97,6 +97,8 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
             MPI_Send(&msg, 1, MPI_LONG_LONG, ID - 1 - n_of_P, 0, MPI_COMM_WORLD);
         }
 
+        cout << ID << " 没事" << endl;
+
         long long last_row[num_col];
         long long last_col[num_row];
         long long l_r = -1;
