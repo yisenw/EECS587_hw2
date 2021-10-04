@@ -120,7 +120,50 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
         cout << "LR of " << ID << ", ";
         cout << l_r << "\n";
     }
+
+    // begin calculation.
+    vector<vector<long long>> A(num_row, vector<long long> (num_col, 0));
+    int start_row = 0;
+    int start_col = 0;
+    if (row == 0) start_row = 1;
+    if (col == 0) start_col = 1; // upperest and leftest are handled
+    for (int i = start_row; i < num_row - 1; i++) { // handle mid elements
+        for (int j = start_col; j < num_col - 1; j++) {
+            A[i][j] = f(A0[i][j], A0[i + 1][j], A0[i][j + 1], A0[i + 1][j + 1]);
+        }
+    }
+    if (col != n_of_P - 1) { // not the rightest
+        for (int i = start_row; i < num_row - 1; i++) { // last col
+            A[i][num_row-1] = f(A0[i][num_row-1], A0[i + 1][num_row-1], last_col[i], last_col[i + 1]);
+        }
+    }
+    if (row != n_of_P - 1) { // not the lowerst
+        for (int j = start_col; j < num_col - 1; j++) { // last row
+            A[num_col-1][j] = f(A0[num_col-1][j], last_row[j], A0[num_col-1][j + 1], last_row[j + 1]);
+        }
+    }
+    if (row != n_of_P - 1 && col != n_of_P - 1) { // not the lowest or rightest
+        assert(l_r != -1);
+        A[num_col-1][num_row-1] = l_r;
+    }
+
+    if (if_print) {
+        cout << "Contents of A of " << ID <<  ": ";
+        for (int i = 0; i < num_row; i++) {
+            for (int j = 0; j < num_col; j++) {
+                cout << A[i][j] << " ";
+            }
+            // cout << "\n";
+        }
+        cout << "\n";
+    }
+
+
+    A0 = A; // important!
+
+    MPI_Barrier(MPI_COMM_WORLD);
     
+
 
     return;//sb
 

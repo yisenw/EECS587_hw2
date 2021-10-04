@@ -5,6 +5,12 @@
         "ostream": "cpp",
         "cmath": "cpp",
         "random": "cpp",
-        "limits": "cpp"
+        "limits": "cpp",
+        "array": "cpp",
+        "deque": "cpp",
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "string_view": "cpp",
+        "initializer_list": "cpp"
     }
 }
