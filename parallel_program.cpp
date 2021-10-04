@@ -72,8 +72,8 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
             for (long long elt: msg) cout << elt << " ";
             cout << endl;
         }
-        // double* a = &v[0];
-        MPI_Send(msg, msg.size(), MPI_LONG_LONG, ID - 1, 0, MPI_COMM_WORLD);
+        // long long* a = &msg[0];
+        MPI_Send(&msg[0], msg.size(), MPI_LONG_LONG, ID - 1, 0, MPI_COMM_WORLD);
     }
     if (row != 0) { // lower send to upper
         vector<long long> msg = A0[0];
@@ -82,7 +82,7 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
             for (long long elt: msg) cout << elt << " ";
             cout << endl;
         }
-        MPI_Send(msg, msg.size(), MPI_LONG_LONG, ID - n_of_P, 0, MPI_COMM_WORLD);
+        MPI_Send(&msg[0], msg.size(), MPI_LONG_LONG, ID - n_of_P, 0, MPI_COMM_WORLD);
     }
     if (col != 0 && row != 0) { // lower l_r to u_l
         long long msg = A0[0][0];
