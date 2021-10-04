@@ -145,7 +145,7 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
     }
     if (row != n_of_P - 1 && col != n_of_P - 1) { // not the lowest or rightest
         assert(l_r != -1);
-        A[num_col-1][num_row-1] = l_r;
+        A[num_col-1][num_row-1] = f(A0[num_col-1][num_row-1], last_row[num_col-1], last_col[num_row-1], l_r);
     }
 
     if (if_print) {
