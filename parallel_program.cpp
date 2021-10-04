@@ -93,8 +93,8 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
         MPI_Send(&msg, 1, MPI_LONG_LONG, ID - 1 - n_of_P, 0, MPI_COMM_WORLD);
     }
 
-    vector<long long> last_row(num_col, -1);
-    vector<long long> last_col(num_row, -1);
+    long long last_row[num_col];
+    vector<long long> last_col[num_row];
     long long l_r = -1;
     // start receiving
     if (col != n_of_P - 1) { // not the rightest, receive from right
@@ -109,9 +109,9 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
 
     if (if_print) {
         cout << "Last col of " << ID << ", ";
-        for (int elt: last_col) cout << elt << " ";
+        for (long long elt: last_col) cout << elt << " ";
         cout << "Last row of " << ID << ", ";
-        for (int elt: last_row) cout << elt << " ";
+        for (long long  elt: last_row) cout << elt << " ";
         cout << "LR of " << ID << ", ";
         cout << l_r << "\n";
     }
