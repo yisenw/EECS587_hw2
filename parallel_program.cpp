@@ -49,25 +49,16 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
     int n_of_P = sqrt(P);
     if (row != 0) { // right send to left
         vector<long long> msg = A0[:][0];
-        if (print) {
+        if (if_print) {
             cout << "Sending msg " << ID << " of " << P << ": ";
             for (longlong elt: msg) cout << elt;
             cout << endl;
         }
         MPI_Send(&msg, n_of_P, MPI_LONG_LONG, ID - 1, 0, MPI_COMM_WORLD);
     }
-    if (row != 0) { // right send to left
-        vector<long long> msg = A0[:][0];
-        if (print) {
-            cout << "Sending msg from right " << ID << " of " << P << ": ";
-            for (long long elt: msg) cout << elt;
-            // cout << endl;
-        }
-        MPI_Send(&msg, n_of_P, MPI_LONG_LONG, ID - 1, 0, MPI_COMM_WORLD);
-    }
     if (col != 0) { // lower send to upper
         vector<long long> msg = A0[0][:];
-        if (print) {
+        if (if_print) {
             cout << "Sending msg from lower " << ID << " of " << P << ": ";
             for (long long elt: msg) cout << elt;
             // cout << endl;
@@ -76,7 +67,7 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
     }
     if (col != 0 && row != 0) { // lower l_r to u_l
         long long msg = A0[0][0];
-        if (print) {
+        if (if_print) {
             cout << "Sending msg from l_r " << ID << " of " << P << ": ";
             cout << msg;
             cout << endl;
