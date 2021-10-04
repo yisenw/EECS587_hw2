@@ -73,7 +73,7 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
     if (col != 0 && row != 0) { // lower l_r to u_l
         long long msg = A0[0][0];
         if (if_print) {
-            cout << "Sending msg from l_r " << ID << " of " << P " to " << ID - 1 - n_of_P << ": ";
+            cout << "Sending msg from l_r " << ID << " of " << P << " to " << ID - 1 - n_of_P << ": ";
             cout << msg;
             cout << endl;
         }
