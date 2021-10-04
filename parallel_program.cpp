@@ -180,6 +180,27 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
     
     }
 
+    // find sum
+    int local_sum = 0;
+    for (int i = 0; i < num_row; i++) {
+        for (int j = 0; j < num_col; j++) {
+            local_sum += A0[i][j];
+            // if (target == A[i][j]) total++;
+        }
+    }
+    if (ID != 0) MPI_Send(&local_sum, 1, MPI_INT, 0, 0, MPI_COMM_WORLD);
+    else { // ID == 0!
+        int total_sum = local_sum;
+        for (int i = 1; i < P; i++) {
+            int i_sum = -1;
+            MPI_Recv(&li_sum, 1, MPI_INT, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+            total_sum += i_sum
+        }
+        cout << "Sum is:  " << total_sum << endl;
+    }
+
+
+
     return;//sb
 
 }
