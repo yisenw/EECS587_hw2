@@ -94,7 +94,7 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
     }
 
     long long last_row[num_col];
-    vector<long long> last_col[num_row];
+    long long last_col[num_row];
     long long l_r = -1;
     // start receiving
     if (col != n_of_P - 1) { // not the rightest, receive from right
