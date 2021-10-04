@@ -12,7 +12,7 @@ long long func(long long a, long long b, long long c, long long d) {
     return (a + b + c + d) % 100;
 }
 
-void run_serial(vector<vector<int>>& A0, int n, long long (*f)(long long, long long, long long, long long), int if_print) {
+void run_serial(vector<vector<long long>>& A0, int n, long long (*f)(long long, long long, long long, long long), int if_print) {
     cout << "n is: " << n << endl;
 
     double start = MPI_Wtime();
