@@ -170,8 +170,8 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
         if (row == n_of_P - 1 && col == n_of_P - 1) A[num_col-1][num_row-1] = A0[num_col-1][num_row-1];
 
         
-        cout << ID << " mei shi" << endl;
         
+
         if (if_print && it == 9) {
             cout << "Contents of A of " << ID <<  ": ";
             for (int i = 0; i < num_row; i++) {
@@ -185,7 +185,7 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
 
 
         A0 = A; // important!
-
+        cout << ID << " mei shi" << endl;
         MPI_Barrier(MPI_COMM_WORLD);
     
     }
