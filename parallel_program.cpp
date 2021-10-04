@@ -126,7 +126,6 @@ int main(int argc, char** argv) {
 // Initialize the MPI environment.
     MPI_Init(&argc, &argv);
     int n = atoi(argv[1]);
-    int if_print = atoi(argv[2]) && (ID == 0);
     // initilize
     vector<vector<long long>> A0(n, vector<long long> (n, 0));
     
@@ -135,6 +134,7 @@ int main(int argc, char** argv) {
     int ID;
     MPI_Comm_size(MPI_COMM_WORLD, &P);
     MPI_Comm_rank(MPI_COMM_WORLD, &ID);
+    int if_print = atoi(argv[2]) && (ID == 0);
     if (ID == 0) {
         cout << "Root processor " << ID << " is initializing." <<  "\n";
         for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) A0[i][j] = (long long)(i + j * n);
