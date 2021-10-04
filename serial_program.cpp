@@ -33,8 +33,9 @@ void run_serial(vector<vector<long long>>& A0, int n, long long (*f)(long long, 
                 for (int j = 0; j < n; j++) cout << A[i][j] << " ";
                 cout << "\n";
             }
-            A0 = A;
         }
+        
+        A0 = A;
 
 
 
