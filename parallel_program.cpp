@@ -67,30 +67,30 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
     if (col != 0) { // right send to left
         vector<long long> msg;
         get_first_col(msg, A0);
-        if (if_print) {
-            cout << "Sending msg from right " << ID << " of " << P << " to " << ID - 1 << ": ";
-            for (long long elt: msg) cout << elt << " ";
-            cout << endl;
-        }
+        // if (if_print) {
+        //     cout << "Sending msg from right " << ID << " of " << P << " to " << ID - 1 << ": ";
+        //     for (long long elt: msg) cout << elt << " ";
+        //     cout << endl;
+        // }
         // long long* a = &msg[0];
         MPI_Send(&msg[0], msg.size(), MPI_LONG_LONG, ID - 1, 0, MPI_COMM_WORLD);
     }
     if (row != 0) { // lower send to upper
         vector<long long> msg = A0[0];
-        if (if_print) {
-            cout << "Sending msg from lower " << ID << " of " << P << " to " << ID - n_of_P << ": ";
-            for (long long elt: msg) cout << elt << " ";
-            cout << endl;
-        }
+        // if (if_print) {
+        //     cout << "Sending msg from lower " << ID << " of " << P << " to " << ID - n_of_P << ": ";
+        //     for (long long elt: msg) cout << elt << " ";
+        //     cout << endl;
+        // }
         MPI_Send(&msg[0], msg.size(), MPI_LONG_LONG, ID - n_of_P, 0, MPI_COMM_WORLD);
     }
     if (col != 0 && row != 0) { // lower l_r to u_l
         long long msg = A0[0][0];
-        if (if_print) {
-            cout << "Sending msg from l_r " << ID << " of " << P << " to " << ID - 1 - n_of_P << ": ";
-            cout << msg;
-            cout << endl;
-        }
+        // if (if_print) {
+        //     cout << "Sending msg from l_r " << ID << " of " << P << " to " << ID - 1 - n_of_P << ": ";
+        //     cout << msg;
+        //     cout << endl;
+        // }
         MPI_Send(&msg, 1, MPI_LONG_LONG, ID - 1 - n_of_P, 0, MPI_COMM_WORLD);
     }
 
