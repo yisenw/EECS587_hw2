@@ -194,7 +194,7 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
         for (int i = 1; i < P; i++) {
             int i_sum = -1;
             MPI_Recv(&li_sum, 1, MPI_INT, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-            total_sum += i_sum
+            total_sum += i_sum;
         }
         cout << "Sum is:  " << total_sum << endl;
     }
