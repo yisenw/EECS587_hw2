@@ -186,7 +186,7 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
 
         A0 = A; // important!
         // cout << ID << " mei shi" << endl;
-        MPI_Barrier(MPI_COMM_WORLD);
+        // MPI_Barrier(MPI_COMM_WORLD);
     
     }
 
