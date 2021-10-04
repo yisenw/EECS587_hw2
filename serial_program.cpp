@@ -16,7 +16,7 @@ void run_serial(vector<vector<int>>& A0, int n, long long (*f)(long long, long l
     cout << "n is: " << n << endl;
 
     double start = MPI_Wtime();
-    vector<vector<int>> A(n, vector<int> (n, 0));
+    vector<vector<long long>> A(n, vector<long long> (n, 0));
 
     for (int it = 0; it < IT_NUM; it++) {
         for (int i = 0; i < n; i++) {
@@ -26,7 +26,6 @@ void run_serial(vector<vector<int>>& A0, int n, long long (*f)(long long, long l
             }
         }
 
-        
         if (if_print) {
             // print
             cout << "\nA for it = " << it << endl;
@@ -36,11 +35,18 @@ void run_serial(vector<vector<int>>& A0, int n, long long (*f)(long long, long l
             }
             A0 = A;
         }
-        
 
+
+
+    }
+    
+    long long out_sum = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) out_sum += A[i][j];
     }
 
     double final = MPI_Wtime();
+    cout << "Sum is:  " << out_sum << endl;
     cout << "Wall time:  " << final - start << endl;
 }
 
@@ -51,8 +57,8 @@ int main(int argc, char** argv) {
     int n = atoi(argv[1]);
 
     // initilize
-    vector<vector<int>> A0(n, vector<int> (n, 0));
-    for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) A0[i][j] = i + j * n;
+    vector<vector<long long>> A0(n, vector<long long> (n, 0));
+    for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) A0[i][j] = (long long)(i + j * n);
     // print
 
     int if_print = atoi(argv[2]);
