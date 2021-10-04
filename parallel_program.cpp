@@ -155,6 +155,11 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
         A[num_col-1][num_row-1] = f(A0[num_col-1][num_row-1], last_row[num_col-1], last_col[num_row-1], l_r);
     }
 
+    // handle rightest and lowerest
+    if (col == n_of_P - 1) for (int i = 0; i < num_row; i++) A[i][num_row-1] = A0[i][num_row-1];
+    if (row == n_of_P - 1) for (int j = 0; j < num_col; j++) A[num_col-1][j] = A0[num_col-1][j];
+    if (row == n_of_P - 1 && col == n_of_P - 1) A[num_col-1][num_row-1] = A0[num_col-1][num_row-1];
+
     if (if_print) {
         cout << "Contents of A of " << ID <<  ": ";
         for (int i = 0; i < num_row; i++) {
