@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <stdlib.h>     /* atoi */
+#include "f.h"
 using namespace std;
 // using std::endl;
 
@@ -66,7 +67,7 @@ int main(int argc, char** argv) {
     
 
     MPI_Barrier(MPI_COMM_WORLD);
-    run_serial(A0, n, &func, if_print);
+    run_serial(A0, n, &f, if_print);
 
     // Finalize MPI.
     MPI_Finalize();

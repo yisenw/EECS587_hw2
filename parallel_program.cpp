@@ -3,6 +3,7 @@
 #include <vector>
 #include <cmath>
 #include <stdlib.h>     /* atoi */
+#include "f.h"
 using namespace std;
 // using std:: "\n";
 
