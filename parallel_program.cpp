@@ -224,8 +224,8 @@ int main(int argc, char** argv) {
     vector<vector<long long>> A0(n, vector<long long> (n, 0));
     
     // print
-    long long P;
-    long long ID;
+    int P;
+    int ID;
     MPI_Comm_size(MPI_COMM_WORLD, &P);
     MPI_Comm_rank(MPI_COMM_WORLD, &ID);
     long long if_print = atoi(argv[2]);
@@ -248,7 +248,7 @@ int main(int argc, char** argv) {
     
 
     MPI_Barrier(MPI_COMM_WORLD);
-    run_parallel(n, &f, if_print, P, ID);
+    run_parallel(n, &f, if_print, (long long)P, (long long)ID);
 
     // Finalize MPI.
     MPI_Finalize();
