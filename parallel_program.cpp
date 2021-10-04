@@ -97,7 +97,7 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
             MPI_Send(&msg, 1, MPI_LONG_LONG, ID - 1 - n_of_P, 0, MPI_COMM_WORLD);
         }
 
-        cout << ID << " mei shi" << endl;
+        
 
         long long last_row[num_col];
         long long last_col[num_row];
@@ -125,6 +125,8 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
             cout << "LR of " << ID << ", ";
             cout << l_r << "\n";
         }
+
+        cout << ID << " mei shi" << endl;
 
         // begin calculation.
         vector<vector<long long>> A(num_row, vector<long long> (num_col, 0));
