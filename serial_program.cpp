@@ -34,12 +34,10 @@ void run_serial(vector<vector<long long>>& A0, int n, long long (*f)(long long, 
                 cout << "\n";
             }
         }
-        
+
         A0 = A;
-
-
-
     }
+    
     long long target = A[int(n/3)][int(2*n/3)];
     int total = 0;
     long long out_sum = 0;
