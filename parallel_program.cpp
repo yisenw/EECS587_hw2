@@ -50,17 +50,17 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
         }
     }
 
-    if (if_print) {
-        cout << "sub_n = " << sub_n << ", ";
-        cout << "Contents of " << ID <<  ": ";
-        for (int i = 0; i < num_row; i++) {
-            for (int j = 0; j < num_col; j++) {
-                cout << A0[i][j] << " ";
-            }
-            // cout << "\n";
-        }
-        cout << "\n";
-    }
+    // if (if_print) {
+    //     cout << "sub_n = " << sub_n << ", ";
+    //     cout << "Contents of " << ID <<  ": ";
+    //     for (int i = 0; i < num_row; i++) {
+    //         for (int j = 0; j < num_col; j++) {
+    //             cout << A0[i][j] << " ";
+    //         }
+    //         // cout << "\n";
+    //     }
+    //     cout << "\n";
+    // }
 
     // start sending 
     // right send to left; lower send to upper; lower right send to upper left.
