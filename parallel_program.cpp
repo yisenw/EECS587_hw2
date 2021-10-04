@@ -248,7 +248,7 @@ int main(int argc, char** argv) {
     
 
     MPI_Barrier(MPI_COMM_WORLD);
-    run_parallel(n, &f, if_print, (long long)P, (long long)ID);
+    run_parallel(n, &func, if_print, (long long)P, (long long)ID);
 
     // Finalize MPI.
     MPI_Finalize();
