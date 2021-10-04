@@ -39,14 +39,19 @@ void run_serial(vector<vector<long long>>& A0, int n, long long (*f)(long long, 
 
 
     }
-    
+    long long target = A[int(n/3), int(2*n/3)];
+    int total = 0;
     long long out_sum = 0;
     for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) out_sum += A[i][j];
+        for (int j = 0; j < n; j++) {
+            out_sum += A[i][j];
+            if (target == A[i][j]) total++;
+        }
     }
 
     double final = MPI_Wtime();
     cout << "Sum is:  " << out_sum << endl;
+    cout << "Numer of elements eqaul to [n/2, 2n/3]:  " << total << endl;
     cout << "Wall time:  " << final - start << endl;
 }
 
