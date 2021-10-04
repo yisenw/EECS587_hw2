@@ -13,7 +13,7 @@ int func(int a, int b, int c, int d) {
     return (a + b + c + d) % 100;
 }
 
-void run_parallel(int n, int (*f)(int, int, int, int), int if_print, int P, int ID) {
+void run_parallel(int n, long long (*f)(long long, long long, long long, long long), int if_print, int P, int ID) {
     int sub_n = ceil(n / sqrt(P));
     int row = floor(ID / sqrt(P));
     int col = ID - row * sqrt(P);
@@ -24,11 +24,11 @@ void run_parallel(int n, int (*f)(int, int, int, int), int if_print, int P, int 
     }
     int num_row = min(sub_n * (row + 1), n) - sub_n * row;
     int num_col = min(sub_n * (col + 1), n) - sub_n * col;
-    vector<vector<int>> A0(num_row, vector<int> (num_col, 0));
+    vector<vector<long long>> A0(num_row, vector<long long> (num_col, 0));
 
     for (int i = 0; i < num_row; i++) {
         for (int j = 0; j < num_col; j++) {
-            A0[i][j] = (row*sub_n + i) + (col*sub_n + j) * n;
+            A0[i][j] = (long long)((row*sub_n + i) + (col*sub_n + j) * n);
         }
     }
 
@@ -47,7 +47,7 @@ void run_parallel(int n, int (*f)(int, int, int, int), int if_print, int P, int 
 
 
 
-    
+
 }
 
 
@@ -57,7 +57,7 @@ int main(int argc, char** argv) {
     int n = atoi(argv[1]);
     int if_print = atoi(argv[2]);
     // initilize
-    vector<vector<int>> A0(n, vector<int> (n, 0));
+    vector<vector<long long>> A0(n, vector<long long> (n, 0));
     
     // print
     int P;
@@ -66,7 +66,7 @@ int main(int argc, char** argv) {
     MPI_Comm_rank(MPI_COMM_WORLD, &ID);
     if (ID == 0) {
         cout << "Root processor " << ID << " is initializing." <<  "\n";
-        for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) A0[i][j] = i + j * n;
+        for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) A0[i][j] = (long long)(i + j * n);
         if (if_print) {
             cout << "n is: " << n <<  "\n";
             cout << "A0:\n";
