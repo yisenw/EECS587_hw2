@@ -51,7 +51,7 @@ void run_serial(vector<vector<long long>>& A0, int n, long long (*f)(long long, 
 
     double final = MPI_Wtime();
     cout << "Sum is:  " << out_sum << endl;
-    cout << "Numer of elements eqaul to [n/3, 2n/3]:  " << total << endl;
+    cout << "Numer of elements eqaul to [n/3, 2n/3] (which is "<< target << "):  " << total << endl;
     cout << "Wall time:  " << final - start << endl;
 }
 
