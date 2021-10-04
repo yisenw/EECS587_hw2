@@ -25,11 +25,11 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
     int sub_n = ceil(n / sqrt(P));
     int row = floor(ID / sqrt(P));
     int col = ID - row * sqrt(P);
-    if (if_print)  {
-        cout << "Start process " << ID << " of " << P <<  ", sub_n is " << sub_n << ", i_start = " 
-        << sub_n * row << ", i_end = " <<min(sub_n * (row + 1), n) << ", j_start = " 
-        << sub_n * col << ", j_end = " <<min(sub_n * (col + 1), n) << " ";
-    }
+    // if (if_print)  {
+    //     cout << "Start process " << ID << " of " << P <<  ", sub_n is " << sub_n << ", i_start = " 
+    //     << sub_n * row << ", i_end = " <<min(sub_n * (row + 1), n) << ", j_start = " 
+    //     << sub_n * col << ", j_end = " <<min(sub_n * (col + 1), n) << " ";
+    // }
     int num_row = min(sub_n * (row + 1), n) - sub_n * row;
     int num_col = min(sub_n * (col + 1), n) - sub_n * col;
 
