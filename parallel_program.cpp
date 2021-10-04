@@ -192,7 +192,7 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
     else { // ID == 0!
         long long total_sum = local_sum;
         for (int i = 1; i < P; i++) {
-            int i_sum = -1;
+            long long i_sum = -1;
             MPI_Recv(&i_sum, 1, MPI_LONG_LONG, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
             total_sum += i_sum;
         }
