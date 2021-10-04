@@ -126,8 +126,15 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
     vector<vector<long long>> A(num_row, vector<long long> (num_col, 0));
     int start_row = 0;
     int start_col = 0;
-    if (row == 0) start_row = 1;
-    if (col == 0) start_col = 1; // upperest and leftest are handled
+    if (row == 0) {
+        start_row = 1;
+        for (int j = 0; j < num_col; j++) A[0][j] = A0[0][j];
+    }
+    if (col == 0) {
+        start_col = 1;
+        for (int i = 0; i < num_row; i++) A[i][0] = A0[i][0];
+    } // upperest and leftest are handled
+
     for (int i = start_row; i < num_row - 1; i++) { // handle mid elements
         for (int j = start_col; j < num_col - 1; j++) {
             A[i][j] = f(A0[i][j], A0[i + 1][j], A0[i][j + 1], A0[i + 1][j + 1]);
