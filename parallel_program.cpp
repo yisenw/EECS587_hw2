@@ -10,7 +10,7 @@ using namespace std;
 
 int IT_NUM = 10;
 
-int func(int a, int b, int c, int d) {
+long long func(long long a, long long b, long long c, long long d) {
     return (a + b + c + d) % 100;
 }
 
