@@ -108,11 +108,11 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
     }
 
     if (if_print) {
-        cout << "Last col of " << ID;
+        cout << "Last col of " << ID << " ";
         for (int elt: last_col) cout << elt << " ";
-        cout << "Last row of " << ID;
+        cout << "Last row of " << ID << " ";
         for (int elt: last_row) cout << elt << " ";
-        cout << "LR of " << ID;
+        cout << "LR of " << ID << " ";
         cout << l_r << "\n";
     }
     
