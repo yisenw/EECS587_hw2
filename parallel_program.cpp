@@ -126,7 +126,7 @@ int main(int argc, char** argv) {
 // Initialize the MPI environment.
     MPI_Init(&argc, &argv);
     int n = atoi(argv[1]);
-    int if_print = atoi(argv[2]);
+    int if_print = atoi(argv[2]) && (ID == 0);
     // initilize
     vector<vector<long long>> A0(n, vector<long long> (n, 0));
     
