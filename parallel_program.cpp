@@ -107,14 +107,14 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
         MPI_Recv(&l_r, 1, MPI_LONG_LONG, ID + n_of_P + 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
     }
 
-    if (if_print) {
-        cout << "Last col of " << ID << " ";
-        for (int elt: last_col) cout << elt << " ";
-        cout << "Last row of " << ID << " ";
-        for (int elt: last_row) cout << elt << " ";
-        cout << "LR of " << ID << " ";
-        cout << l_r << "\n";
-    }
+    // if (if_print) {
+    //     cout << "Last col of " << ID << " ";
+    //     for (int elt: last_col) cout << elt << " ";
+    //     cout << "Last row of " << ID << " ";
+    //     for (int elt: last_row) cout << elt << " ";
+    //     cout << "LR of " << ID << " ";
+    //     cout << l_r << "\n";
+    // }
     
 
     return;//sb
