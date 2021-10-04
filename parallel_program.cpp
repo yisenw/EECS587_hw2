@@ -162,14 +162,15 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
         }
 
 
-        cout << ID << " mei shi" << endl;
         
+
         // handle rightest and lowerest
         if (col == n_of_P - 1) for (int i = 0; i < num_row; i++) A[i][num_row-1] = A0[i][num_row-1];
         if (row == n_of_P - 1) for (int j = 0; j < num_col; j++) A[num_col-1][j] = A0[num_col-1][j];
         if (row == n_of_P - 1 && col == n_of_P - 1) A[num_col-1][num_row-1] = A0[num_col-1][num_row-1];
 
         
+        cout << ID << " mei shi" << endl;
         
         if (if_print && it == 9) {
             cout << "Contents of A of " << ID <<  ": ";
