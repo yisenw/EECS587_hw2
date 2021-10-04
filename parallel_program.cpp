@@ -165,9 +165,9 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
         
 
         // handle rightest and lowerest
-        if (col == n_of_P - 1) for (int i = 0; i < num_row; i++) A[i][num_row-1] = A0[i][num_row-1];
-        if (row == n_of_P - 1) for (int j = 0; j < num_col; j++) A[num_col-1][j] = A0[num_col-1][j];
-        if (row == n_of_P - 1 && col == n_of_P - 1) A[num_col-1][num_row-1] = A0[num_col-1][num_row-1];
+        if (col == n_of_P - 1) for (int i = 0; i < num_row; i++) A[i][num_col-1] = A0[i][num_col-1];
+        if (row == n_of_P - 1) for (int j = 0; j < num_col; j++) A[num_row-1][j] = A0[num_row-1][j];
+        if (row == n_of_P - 1 && col == n_of_P - 1) A[num_row-1][num_col-1] = A0[num_row-1][num_col-1];
 
         
         
@@ -185,7 +185,7 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
 
 
         A0 = A; // important!
-        cout << ID << " mei shi" << endl;
+        // cout << ID << " mei shi" << endl;
         MPI_Barrier(MPI_COMM_WORLD);
     
     }
