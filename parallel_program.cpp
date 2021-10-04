@@ -36,12 +36,12 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
     int n_of_P = sqrt(P);
     vector<vector<long long>> A0(num_row, vector<long long> (num_col, 0));
 
-    if (row != n_of_P - 1) { // not the lowest
-        A0.push_back(vector<long long> (num_col, 0));
-    }
-    if (col != n_of_P - 1) { // not the rightest
-        append_col(A0);
-    }
+    // if (row != n_of_P - 1) { // not the lowest
+    //     A0.push_back(vector<long long> (num_col, 0));
+    // }
+    // if (col != n_of_P - 1) { // not the rightest
+    //     append_col(A0);
+    // }
 
 
     for (int i = 0; i < num_row; i++) {
@@ -72,7 +72,7 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
             for (long long elt: msg) cout << elt << " ";
             cout << endl;
         }
-        MPI_Send(&msg, n_of_P, MPI_LONG_LONG, ID - 1, 0, MPI_COMM_WORLD);
+        MPI_Send(&msg, msg.size(), MPI_LONG_LONG, ID - 1, 0, MPI_COMM_WORLD);
     }
     if (row != 0) { // lower send to upper
         vector<long long> msg = A0[0];
@@ -81,7 +81,7 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
             for (long long elt: msg) cout << elt << " ";
             cout << endl;
         }
-        MPI_Send(&msg, n_of_P, MPI_LONG_LONG, ID - n_of_P, 0, MPI_COMM_WORLD);
+        MPI_Send(&msg, msg.size(), MPI_LONG_LONG, ID - n_of_P, 0, MPI_COMM_WORLD);
     }
     if (col != 0 && row != 0) { // lower l_r to u_l
         long long msg = A0[0][0];
@@ -92,6 +92,31 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
         }
         MPI_Send(&msg, 1, MPI_LONG_LONG, ID - 1 - n_of_P, 0, MPI_COMM_WORLD);
     }
+
+    vector<long long> last_row(num_col, -1);
+    vector<long long> last_col(num_row, -1);
+    long long l_r = -1;
+    // start receiving
+    if (col != n_of_P - 1) { // not the rightest, receive from right
+        MPI_Recv(&last_col, num_row, MPI_LONG_LONG, ID + 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+    }
+    if (row != n_of_P - 1) { // not the lowest
+        MPI_Recv(&last_row, num_col, MPI_LONG_LONG, ID + n_of_P, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+    }
+    if (row != n_of_P - 1 && col != n_of_P - 1) { // not the lowest or rightest
+        MPI_Recv(&l_r, 1, MPI_LONG_LONG, ID + n_of_P + 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+    }
+
+    if (if_print) {
+        cout << "Last col of " << ID;
+        for (int elt: last_col) cout << elt << " ";
+        cout << "Last row of " << ID;
+        for (int elt: last_row) cout << elt << " ";
+        cout << "LR of " << ID;
+        cout << l_r << "\n";
+    }
+    
+
     return;//sb
 
 }
