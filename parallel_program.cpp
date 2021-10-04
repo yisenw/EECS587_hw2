@@ -13,6 +13,10 @@ int func(int a, int b, int c, int d) {
     return (a + b + c + d) % 100;
 }
 
+void get_first_col(vector<long long>& msg, const vector<vector<long long>>& A0) {
+    for (vector<long long> vec: A0) msg.push_back(vec[0]);
+}
+
 void run_parallel(int n, long long (*f)(long long, long long, long long, long long), int if_print, int P, int ID) {
     int sub_n = ceil(n / sqrt(P));
     int row = floor(ID / sqrt(P));
@@ -48,7 +52,8 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
     // right send to left; lower send to upper; lower right send to upper left.
     int n_of_P = sqrt(P);
     if (row != 0) { // right send to left
-        vector<long long> msg = A0[:][0];
+        vector<long long> msg;
+        get_first_col(msg, A0);
         if (if_print) {
             cout << "Sending msg " << ID << " of " << P << ": ";
             for (longlong elt: msg) cout << elt;
@@ -57,7 +62,7 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
         MPI_Send(&msg, n_of_P, MPI_LONG_LONG, ID - 1, 0, MPI_COMM_WORLD);
     }
     if (col != 0) { // lower send to upper
-        vector<long long> msg = A0[0][:];
+        vector<long long> msg = A0[0];
         if (if_print) {
             cout << "Sending msg from lower " << ID << " of " << P << ": ";
             for (long long elt: msg) cout << elt;
