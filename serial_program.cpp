@@ -39,7 +39,7 @@ void run_serial(vector<vector<long long>>& A0, int n, long long (*f)(long long, 
 
 
     }
-    long long target = A[int(n/3), int(2*n/3)];
+    long long target = A[int(n/3)][int(2*n/3)];
     int total = 0;
     long long out_sum = 0;
     for (int i = 0; i < n; i++) {
