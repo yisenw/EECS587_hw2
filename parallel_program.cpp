@@ -4,6 +4,7 @@
 #include <cmath>
 #include <stdlib.h>     /* atoi */
 #include "f.h"
+#include <cassert>
 using namespace std;
 // using std:: "\n";
 
@@ -122,7 +123,7 @@ void run_parallel(int n, long long (*f)(long long, long long, long long, long lo
     }
 
     // begin calculation.
-    vector<vector<long long>> A(num_row, vector<long long> (num_col, 0));
+    vector<vector<long long>> A(num_row, vector<long long> (num_col, 0));
     int start_row = 0;
     int start_col = 0;
     if (row == 0) start_row = 1;
