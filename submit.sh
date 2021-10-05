@@ -1,0 +1,1 @@
+mpirun -np 36 --oversubscribe pal.out 4000 0
