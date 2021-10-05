@@ -216,16 +216,16 @@ void run_parallel(long long n, long long (*f)(long long, long long, long long, l
     // cout << "row col: " << id_row << " " << id_col << endl;
     if (id_row == row && id_col == col) { // The number is in my square!
         assert(id_row * n_of_P + id_col == ID);
-        cout << ID << " it is me!" << endl;
+        // cout << ID << " it is me!" << endl;
         ver_num = A0[n/3 - id_row * sub_n][2*n/3 - id_col * sub_n];
-        cout << ID << " it is me again!" << endl;
+        // cout << ID << " it is me again!" << endl;
         for (int i = 0; i < P; i++) {
             if (i != ID) MPI_Send(&ver_num, 1, MPI_LONG_LONG, i, 0, MPI_COMM_WORLD);
         }
         
     }
     else {
-        cout << ID << " mei shi" << endl;
+        // cout << ID << " mei shi" << endl;
         MPI_Recv(&ver_num, 1, MPI_LONG_LONG, id_row * n_of_P + id_col, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
     }
     
@@ -234,7 +234,7 @@ void run_parallel(long long n, long long (*f)(long long, long long, long long, l
     int total_ver_sub = 0;
     for (long long i = 0; i < num_row; i++) {
         for (long long j = 0; j < num_col; j++) {
-            if (A0[i][j] == ver_num) total_ver_sub += 1;
+            if (A0[i][j] == ver_num) total_ver_sub++;
         }
     }
 
