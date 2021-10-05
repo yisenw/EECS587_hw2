@@ -221,7 +221,7 @@ void run_parallel(long long n, long long (*f)(long long, long long, long long, l
 
     assert(ver_num != -1);
 
-    total_ver_sub = 0;
+    int total_ver_sub = 0;
     for (long long i = 0; i < num_row; i++) {
         for (long long j = 0; j < num_col; j++) {
             if (A0[i][j] == ver_num) total_ver_sub += 1;
