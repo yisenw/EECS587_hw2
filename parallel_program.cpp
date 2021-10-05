@@ -113,7 +113,7 @@ void run_parallel(long long n, long long (*f)(long long, long long, long long, l
             MPI_Recv(&l_r, 1, MPI_LONG_LONG, ID + n_of_P + 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
         }
 
-        if (if_print && it == IT_NUM) {
+        if (if_print && it == IT_NUM-1) {
             if (col != n_of_P - 1) {
                 cout << "Last col of " << ID << ", ";
                 for (long long elt: last_col) cout << elt << " ";
