@@ -221,7 +221,7 @@ void run_parallel(long long n, long long (*f)(long long, long long, long long, l
         // cout << ID << " it is me!" << endl;
     }
     else {
-        cout << ID << " mei shi" << endl;
+        // cout << ID << " mei shi" << endl;
         MPI_Recv(&ver_num, 1, MPI_LONG_LONG, id_row * n_of_P + id_col, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
     }
     
