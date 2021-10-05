@@ -16,4 +16,4 @@
 # in this case to "output.txt")
 
 mpirun -np 1 --oversubscribe serial.out 1000 0
-mpirun -np 1 --oversubscribe serial.out 4000 0
+# mpirun -np 1 --oversubscribe serial.out 4000 0

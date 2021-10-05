@@ -209,6 +209,9 @@ void run_parallel(long long n, long long (*f)(long long, long long, long long, l
         cout << "Sum is:  " << total_sum << endl;
     }
 
+    // calculate [n/3, 2n/3];
+    
+
 
 
     return;//sb
