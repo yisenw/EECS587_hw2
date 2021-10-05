@@ -217,7 +217,7 @@ void run_parallel(long long n, long long (*f)(long long, long long, long long, l
     if (id_row == row && id_col == col) { // The number is in my square!
         assert(id_row * n_of_P + id_col == ID);
         cout << ID << " it is me!" << endl;
-        ver_num = A0[n/3 - id_row * n_of_P][2*n/3 - id_col * n_of_P];
+        ver_num = A0[n/3 - id_row * sub_n][2*n/3 - id_col * sub_n];
         cout << ID << " it is me again!" << endl;
         for (int i = 0; i < P; i++) {
             if (i != ID) MPI_Send(&ver_num, 1, MPI_LONG_LONG, i, 0, MPI_COMM_WORLD);
