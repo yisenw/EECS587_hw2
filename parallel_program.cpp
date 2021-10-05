@@ -8,7 +8,7 @@
 using namespace std;
 // using std:: "\n";
 
-long long IT_NUM = 10;
+long long IT_NUM = 1;
 
 long long func(long long a, long long b, long long c, long long d) {
     return (a + b + c + d) % 100;
