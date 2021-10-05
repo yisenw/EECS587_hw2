@@ -255,7 +255,7 @@ void run_parallel(long long n, long long (*f)(long long, long long, long long, l
         }
         cout << "Number of elements eqaul to [n/3, 2n/3] (which is "<< ver_num << "):  " << total_ver << endl;
         double end = MPI_Wtime();
-        cout << "Wall time:  " << final - start << endl;
+        cout << "Wall time:  " << end - start << endl;
     }
 
     return;//sb
