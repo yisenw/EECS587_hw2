@@ -65,6 +65,8 @@ void run_parallel(long long n, long long (*f)(long long, long long, long long, l
 
     // start sending 
     // right send to left; lower send to upper; lower right send to upper left.
+    MPI_Barrier(MPI_COMM_WORLD);
+    double start = MPI_Wtime();
     for (long long it = 0; it < IT_NUM; it++) {
 
         if (col != 0) { // right send to left
@@ -252,6 +254,8 @@ void run_parallel(long long n, long long (*f)(long long, long long, long long, l
             total_ver += ver_i;
         }
         cout << "Number of elements eqaul to [n/3, 2n/3] (which is "<< ver_num << "):  " << total_ver << endl;
+        double end = MPI_Wtime();
+        cout << "Wall time:  " << final - start << endl;
     }
 
     return;//sb
