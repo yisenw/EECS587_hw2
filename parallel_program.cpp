@@ -218,7 +218,7 @@ void run_parallel(long long n, long long (*f)(long long, long long, long long, l
         for (int i = 0; i < P; i++) if (i != ID) MPI_Send(&ver_num, 1, MPI_LONG_LONG, i, 0, MPI_COMM_WORLD);
     }
     else MPI_Recv(&ver_num, 1, MPI_LONG_LONG, id_row * n_of_P + id_col, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-
+    cout << ID << " mei shi" << endl;
     assert(ver_num != -1);
 
     int total_ver_sub = 0;
