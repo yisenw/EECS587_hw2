@@ -213,7 +213,7 @@ void run_parallel(long long n, long long (*f)(long long, long long, long long, l
     long long id_row = (n/3) / n_of_P;
     long long id_col = (2*n/3) / n_of_P;
     long long ver_num = -1;
-    cout << "row col: " << id_row << " " << id_col;
+    cout << "row col: " << id_row << " " << id_col << endl;
     if (id_row == row && id_col == col) { // The number is in my square!
         assert(id_row * n_of_P + id_col != ID);
         ver_num = A0[n/3 - id_row * n_of_P][2*n/3 - id_col * n_of_P];
