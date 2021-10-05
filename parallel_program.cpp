@@ -231,7 +231,7 @@ void run_parallel(long long n, long long (*f)(long long, long long, long long, l
     
     assert(ver_num != -1);
 
-    int total_ver_sub = 0;
+    long long total_ver_sub = 0;
     for (long long i = 0; i < num_row; i++) {
         for (long long j = 0; j < num_col; j++) {
             if (A0[i][j] == ver_num) total_ver_sub++;
@@ -240,9 +240,9 @@ void run_parallel(long long n, long long (*f)(long long, long long, long long, l
 
     if (ID != 0) MPI_Send(&total_ver_sub, 1, MPI_LONG_LONG, 0, 0, MPI_COMM_WORLD);
     else {
-        int total_ver = total_ver_sub;
+        long long  total_ver = total_ver_sub;
         for (int i = 1; i < P; i++) {
-            int ver_i = -1; 
+            long long  ver_i = -1; 
             MPI_Recv(&ver_i, 1, MPI_LONG_LONG, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
             assert(ver_i != -1);
             total_ver += ver_i;
