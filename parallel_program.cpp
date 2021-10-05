@@ -52,7 +52,7 @@ void run_parallel(long long n, long long (*f)(long long, long long, long long, l
     }
 
     if (if_print) {
-        cout << "num_row = " << num_row << ", " << "num_col = " << num_col << ", ";
+        cout << "row = " << row << ", " << "col = " << col << ", ";
         cout << "Contents of " << ID <<  ": ";
         for (long long i = 0; i < num_row; i++) {
             for (long long j = 0; j < num_col; j++) {
