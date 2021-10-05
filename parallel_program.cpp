@@ -214,10 +214,10 @@ void run_parallel(long long n, long long (*f)(long long, long long, long long, l
     long long id_col = (2*n/3) / n_of_P;
     long long ver_num = -1;
     if (id_row == row && id_col == col) { // The number is in my square!
+        assert(id_row * n_of_P + id_col != ID);
         ver_num = A0[n/3 - id_row * n_of_P][2*n/3 - id_col * n_of_P];
         for (int i = 0; i < P; i++) if (i != ID) MPI_Send(&ver_num, 1, MPI_LONG_LONG, i, 0, MPI_COMM_WORLD);
     }
-    cout << ID << " mei shi" << endl;
     else MPI_Recv(&ver_num, 1, MPI_LONG_LONG, id_row * n_of_P + id_col, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
     
     assert(ver_num != -1);
