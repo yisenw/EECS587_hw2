@@ -15,5 +15,5 @@
 # (">" redirects the print output of your pfogram,
 # in this case to "output.txt")
 
-mpirun -np 36 --oversubscribe pal.out 1000 0 
+mpirun -np 36 --oversubscribe pal.out 4000 0 
 # mpirun -np 1 --oversubscribe serial.out 4000 0
