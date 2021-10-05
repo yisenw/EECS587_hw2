@@ -144,7 +144,7 @@ void run_parallel(long long n, long long (*f)(long long, long long, long long, l
         for (long long i = start_row; i < num_row - 1; i++) { // handle mid elements
             for (long long j = start_col; j < num_col - 1; j++) {
                 if (ID == 6) {
-                    cout << "!!6 calculate this:" << A0[i][j] << " " << A0[i+1][j] << " " << A0[i][j+1] << " " << A0[i+1][j+1] << "=";
+                    // cout << "!!6 calculate this:" << A0[i][j] << " " << A0[i+1][j] << " " << A0[i][j+1] << " " << A0[i+1][j+1] << "=";
                     cout << f(A0[i][j], A0[i + 1][j], A0[i][j + 1], A0[i + 1][j + 1]) << endl;
                 }
                 A[i][j] = f(A0[i][j], A0[i + 1][j], A0[i][j + 1], A0[i + 1][j + 1]);
