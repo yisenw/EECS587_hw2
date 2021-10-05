@@ -1,8 +1,9 @@
 #!/bin/bash
 # (See https://arc-ts.umich.edu/greatlakes/user-guide/ for command details)
 # Set up batch job settings
-#SBATCH --job-name=mpi4000*4000
-#SBATCH --mail-type=BEGIN, END
+
+#SBATCH --job-name=submit
+#SBATCH --mail-type=BEGIN,END
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=36
 #SBATCH --mem-per-cpu=1g
