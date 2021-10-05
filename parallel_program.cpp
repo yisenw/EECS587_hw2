@@ -172,7 +172,7 @@ void run_parallel(long long n, long long (*f)(long long, long long, long long, l
         
         
 
-        if (if_print && it == 9) {
+        if (if_print && it == IT_NUM-1) {
             cout << "Contents of A of " << ID <<  ": ";
             for (long long i = 0; i < num_row; i++) {
                 for (long long j = 0; j < num_col; j++) {
