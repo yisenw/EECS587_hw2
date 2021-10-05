@@ -237,7 +237,7 @@ void run_parallel(long long n, long long (*f)(long long, long long, long long, l
             assert(ver_i != -1);
             total_ver += ver_i;
         }
-        cout << "Numer of elements eqaul to [n/3, 2n/3] (which is "<< ver_num << "):  " << total_ver << endl;
+        cout << "Number of elements eqaul to [n/3, 2n/3] (which is "<< ver_num << "):  " << total_ver << endl;
     }
 
     return;//sb
