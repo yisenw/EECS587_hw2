@@ -218,9 +218,12 @@ void run_parallel(long long n, long long (*f)(long long, long long, long long, l
         assert(id_row * n_of_P + id_col == ID);
         ver_num = A0[n/3 - id_row * n_of_P][2*n/3 - id_col * n_of_P];
         for (int i = 0; i < P; i++) if (i != ID) MPI_Send(&ver_num, 1, MPI_LONG_LONG, i, 0, MPI_COMM_WORLD);
-        cout << ID << " it is me!" << endl;
+        // cout << ID << " it is me!" << endl;
     }
-    else {cout << ID << " mei shi" << endl;MPI_Recv(&ver_num, 1, MPI_LONG_LONG, id_row * n_of_P + id_col, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);}
+    else {
+        cout << ID << " mei shi" << endl;
+        MPI_Recv(&ver_num, 1, MPI_LONG_LONG, id_row * n_of_P + id_col, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+    }
     
     assert(ver_num != -1);
 
