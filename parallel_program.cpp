@@ -26,11 +26,11 @@ void run_parallel(long long n, long long (*f)(long long, long long, long long, l
     long long sub_n = ceil(n / sqrt(P));
     long long row = floor(ID / sqrt(P));
     long long col = ID - row * sqrt(P);
-    // if (if_print)  {
-    //     cout << "Start process " << ID << " of " << P <<  ", sub_n is " << sub_n << ", i_start = " 
-    //     << sub_n * row << ", i_end = " <<min(sub_n * (row + 1), n) << ", j_start = " 
-    //     << sub_n * col << ", j_end = " <<min(sub_n * (col + 1), n) << " ";
-    // }
+    if (if_print)  {
+        cout << "Start process " << ID << " of " << P <<  ", sub_n is " << sub_n << ", i_start = " 
+        << sub_n * row << ", i_end = " <<min(sub_n * (row + 1), n) << ", j_start = " 
+        << sub_n * col << ", j_end = " <<min(sub_n * (col + 1), n) << " ";
+    }
     long long num_row = min(sub_n * (row + 1), n) - sub_n * row;
     long long num_col = min(sub_n * (col + 1), n) - sub_n * col;
 
@@ -51,17 +51,17 @@ void run_parallel(long long n, long long (*f)(long long, long long, long long, l
         }
     }
 
-    // if (if_print) {
-    //     cout << "sub_n = " << sub_n << ", ";
-    //     cout << "Contents of " << ID <<  ": ";
-    //     for (long long i = 0; i < num_row; i++) {
-    //         for (long long j = 0; j < num_col; j++) {
-    //             cout << A0[i][j] << " ";
-    //         }
-    //         // cout << "\n";
-    //     }
-    //     cout << "\n";
-    // }
+    if (if_print) {
+        cout << "sub_n = " << sub_n << ", ";
+        cout << "Contents of " << ID <<  ": ";
+        for (long long i = 0; i < num_row; i++) {
+            for (long long j = 0; j < num_col; j++) {
+                cout << A0[i][j] << " ";
+            }
+            // cout << "\n";
+        }
+        cout << "\n";
+    }
 
     // start sending 
     // right send to left; lower send to upper; lower right send to upper left.
