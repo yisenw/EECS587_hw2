@@ -210,9 +210,35 @@ void run_parallel(long long n, long long (*f)(long long, long long, long long, l
     }
 
     // calculate [n/3, 2n/3];
-    
+    long long id_row = (n/3) / n_of_P;
+    long long id_col = (2*n/3) / n_of_P;
+    long long ver_num = -1;
+    if (id_row == row && id_col == col) { // The number is in my square!
+        ver_num = A0[n/3 - id_row * n_of_P][2*n/3 - id_col * n_of_P];
+        for (int i = 0; i < P; i++) if (i != ID) MPI_Send(&ver_num, 1, MPI_LONG_LONG, i, 0, MPI_COMM_WORLD);
+    }
+    else MPI_Recv(&ver_num, 1, MPI_LONG_LONG, id_row * n_of_P + id_col, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 
+    assert(ver_num != -1);
 
+    total_ver_sub = 0;
+    for (long long i = 0; i < num_row; i++) {
+        for (long long j = 0; j < num_col; j++) {
+            if (A0[i][j] == ver_num) total_ver_sub += 1;
+        }
+    }
+
+    if (ID != 0) MPI_Send(&total_ver_sub, 1, MPI_LONG_LONG, 0, 0, MPI_COMM_WORLD);
+    else {
+        int total_ver = total_ver_sub;
+        for (int i = 1; i < P; i++) {
+            int ver_i = -1; 
+            MPI_Recv(&ver_i, 1, MPI_LONG_LONG, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+            assert(ver_i != -1);
+            total_ver += ver_i;
+        }
+        cout << "Numer of elements eqaul to [n/3, 2n/3] (which is "<< ver_num << "):  " << total_ver << endl;
+    }
 
     return;//sb
 
