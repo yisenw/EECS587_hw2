@@ -169,9 +169,9 @@ void run_parallel(long long n, long long (*f)(long long, long long, long long, l
         
 
         // handle rightest and lowerest
-        if (col == n_of_P - 1) for (long long i = 0; i < num_row; i++) A[i][num_col-1] = A0[i][num_col-1];
-        if (row == n_of_P - 1) for (long long j = 0; j < num_col; j++) A[num_row-1][j] = A0[num_row-1][j];
-        if (row == n_of_P - 1 && col == n_of_P - 1) A[num_row-1][num_col-1] = A0[num_row-1][num_col-1];
+        // if (col == n_of_P - 1) for (long long i = 0; i < num_row; i++) A[i][num_col-1] = A0[i][num_col-1];
+        // if (row == n_of_P - 1) for (long long j = 0; j < num_col; j++) A[num_row-1][j] = A0[num_row-1][j];
+        // if (row == n_of_P - 1 && col == n_of_P - 1) A[num_row-1][num_col-1] = A0[num_row-1][num_col-1];
 
         
         
