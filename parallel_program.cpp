@@ -210,8 +210,8 @@ void run_parallel(long long n, long long (*f)(long long, long long, long long, l
     }
 
     // calculate [n/3, 2n/3];
-    long long id_row = (n/3) / n_of_P;
-    long long id_col = (2*n/3) / n_of_P;
+    long long id_row = (n/3) / sub_n;
+    long long id_col = (2*n/3) / sub_n;
     long long ver_num = -1;
     cout << "row col: " << id_row << " " << id_col << endl;
     if (id_row == row && id_col == col) { // The number is in my square!
